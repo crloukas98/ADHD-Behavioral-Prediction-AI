@@ -1,0 +1,10 @@
+{
+    "dataset_name": "ADHD-200 Consortium Phenotypic Data",
+    "dataset_version": "pending",
+    "source_url": "pending",
+    "raw_directory": "data/raw",
+    "expected_files": [
+        "phenotypic_data.csv"
+    ],
+    "description": "Behavioral and phenotypic data from the ADHD-200 Consortium used for machine learning research."
+}
