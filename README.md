@@ -333,42 +333,129 @@ This project is a research investigation.
 
 The models are not diagnostic tools and cannot replace clinical evaluation.
 
-Future Directions
-Study 2: Explainable ADHD Prediction
+# Study 2: Explainable ADHD Prediction
 
-Planned:
+## Research Question
 
-SHAP explanations
-Feature interaction analysis
-Individual prediction explanations
-Study 3: Neuroimaging ADHD Prediction
+> Which features contribute most to machine learning ADHD predictions, and can model decisions be interpreted in a clinically meaningful way?
 
-Future work will investigate ADHD-200 neuroimaging data.
+---
 
-Planned pipeline:
+## Motivation
 
-fMRI data
+Although Study 1 demonstrated strong predictive performance, machine learning models can behave as black boxes.
 
-↓
+Study 2 introduces explainable artificial intelligence (XAI) methods to investigate:
 
-Brain connectivity features
+- which features drive predictions
+- how strongly each feature contributes
+- whether model behavior aligns with known ADHD clinical characteristics
 
-↓
+---
 
-Machine learning models
+# Methodology
 
-↓
+The final XGBoost ADHD prediction model from Study 1 was analyzed using:
 
-ADHD prediction
+## SHAP (SHapley Additive exPlanations)
 
-↓
+SHAP estimates how much each feature contributes to an individual prediction.
 
-Explainable AI
-Research Goal
+Pipeline:
 
-The ultimate goal of this project is to explore how artificial intelligence can contribute to understanding ADHD through the combination of:
 
-machine learning
-neuroscience
-behavioral science
-explainable AI
+Final XGBoost model
+
+    |
+
+    ↓
+
+SHAP value calculation
+
+    |
+
+    ↓
+
+Global feature importance
+
+    |
+
+    ↓
+
+Prediction interpretation
+
+
+---
+
+# SHAP Feature Importance
+
+The most influential features were:
+
+| Rank | Feature | Mean Absolute SHAP |
+|---|---|---:|
+| 1 | ADHD Index | 1.6816 |
+| 2 | Inattentive symptoms | 0.9543 |
+| 3 | Full4 IQ | 0.7540 |
+| 4 | Hyper/Impulsive symptoms | 0.6431 |
+| 5 | Age | 0.4999 |
+| 6 | Gender | 0.4249 |
+| 7 | Verbal IQ | 0.3525 |
+| 8 | Performance IQ | 0.2854 |
+| 9 | ADHD Measure | 0.2715 |
+
+---
+
+# Interpretation
+
+The explainability analysis confirms that the model primarily relies on behavioral symptom measurements.
+
+The strongest contributors were:
+
+- ADHD Index
+- Inattentive symptoms
+- Hyperactive/Impulsive symptoms
+
+These features correspond directly to established ADHD clinical domains.
+
+Demographic and cognitive variables contributed less strongly.
+
+---
+
+# Scientific Interpretation
+
+The model does not appear to discover an independent biological marker of ADHD from phenotypic data.
+
+Instead, it learns statistical patterns within clinically measured characteristics.
+
+This demonstrates that:
+
+- machine learning can reproduce ADHD-related behavioral patterns
+- model decisions can be interpreted using explainable AI methods
+- explainability is essential when applying AI to healthcare research
+
+---
+
+# Study 2 Outputs
+
+Generated:
+
+
+reports/
+
+├── shap_feature_importance.csv
+
+└── figures/
+
+└── shap_summary.png
+
+---
+
+# Study 2 Status
+
+Completed:
+
+✅ Final XGBoost model explanation  
+✅ SHAP integration  
+✅ Global feature importance analysis  
+✅ Explainability visualization  
+✅ Interpretation of model behavior  
