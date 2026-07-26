@@ -4,6 +4,18 @@ Machine Learning Research Project for ADHD Prediction Using Phenotypic and Neuro
 
 ---
 
+## Abstract
+
+This project develops a complete, reproducible, and explainable artificial intelligence pipeline for predicting ADHD-related patterns from clinical phenotypic data. Using the publicly available ADHD-200 Consortium dataset, participant demographic, cognitive, and symptom-related features were processed and evaluated through multiple machine learning approaches.
+
+Four classification algorithms were compared: Logistic Regression, Support Vector Machine, Random Forest, and XGBoost. The final models were evaluated using cross-validation, ROC-AUC, accuracy, precision, recall, and confusion matrices. XGBoost achieved the strongest performance, demonstrating excellent discrimination between ADHD and non-ADHD classes.
+
+Beyond prediction accuracy, this project investigates model transparency through Explainable AI techniques. SHAP analysis was applied to identify which features contributed most strongly to model decisions, revealing that ADHD symptom measurements and related clinical variables were the primary drivers of predictions.
+
+The result is a complete machine learning workflow that integrates data preprocessing, model development, performance evaluation, and explainability into a reproducible research framework. This project demonstrates how artificial intelligence can be applied responsibly to healthcare-related datasets by combining predictive capability with interpretability.
+
+**Key achievement:** Built an end-to-end explainable AI system that predicts ADHD-related patterns from clinical data while identifying the features influencing its decisions.
+
 ## Overview
 
 This project investigates whether artificial intelligence and machine learning can identify patterns associated with Attention-Deficit/Hyperactivity Disorder (ADHD) using publicly available research datasets.
