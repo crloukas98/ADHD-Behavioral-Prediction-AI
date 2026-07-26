@@ -1,85 +1,80 @@
 """
-ADHD Dataset Source Locator
+ADHD-200 NITRC File Release Inspector
 
 Purpose:
-Track and verify the official source
-of the ADHD research dataset.
+Extract downloadable files from NITRC release page.
 """
 
-import json
-from pathlib import Path
-from datetime import datetime
+import requests
+from bs4 import BeautifulSoup
 
 
-PROJECT_ROOT = Path(__file__).resolve().parent.parent
-
-CONFIG_DIR = PROJECT_ROOT / "config"
-
-DATASET_FILE = CONFIG_DIR / "datasets.json"
+URL = "https://www.nitrc.org/frs/?group_id=383"
 
 
-def show_paths():
+def inspect_files():
 
-    print("Project root:")
-    print(PROJECT_ROOT)
-
-    print("\nLooking for:")
-    print(DATASET_FILE)
-
-    print("\nExists:")
-    print(DATASET_FILE.exists())
-
-
-def load_registry():
-
-    if not DATASET_FILE.exists():
-        print("\nDataset registry not found.")
-        return None
-
-    with open(
-        DATASET_FILE,
-        "r",
-        encoding="utf-8"
-    ) as file:
-
-        return json.load(file)
-
-
-def show_dataset_status():
-
-    registry = load_registry()
-
-    if registry is None:
-        return
-
-    dataset = registry["datasets"]["adhd200_phenotypic"]
-
-    print("\nDataset:")
-    print(dataset["name"])
-
-    print("\nCurrent status:")
-    print(dataset["status"])
-
-    print("\nSource:")
-    print(dataset["source"])
-
-    print("\nVersion:")
-    print(dataset["version"])
-
-
-def main():
-
-    print("ADHD Dataset Source Verification\n")
-
-    show_paths()
-
-    show_dataset_status()
-
-    print(
-        "\nLast checked:",
-        datetime.now().isoformat()
+    response = requests.get(
+        URL,
+        timeout=30
     )
+
+    print("HTTP status:", response.status_code)
+
+    soup = BeautifulSoup(
+        response.text,
+        "html.parser"
+    )
+
+    print("\nPossible ADHD files:\n")
+
+    found = False
+
+    for link in soup.find_all("a"):
+
+        text = link.get_text(
+            strip=True
+        )
+
+        href = link.get(
+            "href"
+        )
+
+        if href:
+
+            combined = (
+                text + href
+            ).lower()
+
+            keywords = [
+                "adhd",
+                "phen",
+                "csv",
+                "behavior",
+                "participant"
+            ]
+
+            if any(
+                word in combined
+                for word in keywords
+            ):
+
+                print(
+                    text,
+                    "->",
+                    href
+                )
+
+                found = True
+
+
+    if not found:
+
+        print(
+            "No matching files found."
+        )
 
 
 if __name__ == "__main__":
-    main()
+
+    inspect_files()

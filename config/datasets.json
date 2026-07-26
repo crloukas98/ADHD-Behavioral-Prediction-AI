@@ -2,9 +2,9 @@
     "datasets": {
         "adhd200_phenotypic": {
             "name": "ADHD-200 Consortium Phenotypic Data",
-            "status": "pending_download",
-            "source": null,
-            "version": null,
+            "status": "source_verified",
+            "source": "https://www.nitrc.org/ir/data/projects/adhd_200",
+            "version": "ADHD-200 Consortium",
             "files": [
                 "phenotypic_data.csv"
             ],

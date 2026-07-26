@@ -1,11 +1,7 @@
 """
-ADHD Dataset Download Utility
+ADHD-200 Phenotypic Dataset Downloader
 
-Purpose:
-Download and verify the raw ADHD research dataset.
-
-Raw data location:
-data/raw/
+Downloads the official ADHD-200 phenotypic dataset.
 """
 
 from pathlib import Path
@@ -16,61 +12,79 @@ from datetime import datetime
 
 PROJECT_ROOT = Path(__file__).resolve().parent.parent
 
-RAW_DATA_DIR = PROJECT_ROOT / "data" / "raw"
+RAW_DIR = PROJECT_ROOT / "data" / "raw"
+
+OUTPUT_FILE = RAW_DIR / "adhd200_preprocessed_phenotypics.tsv"
 
 METADATA_FILE = PROJECT_ROOT / "data" / "dataset_metadata.json"
 
 
-def create_raw_directory():
+DATASET_URL = (
+    "https://www.nitrc.org"
+    "/frs/download.php/9024/"
+    "adhd200_preprocessed_phenotypics.tsv"
+)
 
-    RAW_DATA_DIR.mkdir(
+
+def create_directory():
+
+    RAW_DIR.mkdir(
         parents=True,
         exist_ok=True
     )
 
-    print(
-        f"Raw directory ready: {RAW_DATA_DIR}"
-    )
 
+def download_dataset():
 
-def download_file(url, filename):
-
-    destination = RAW_DATA_DIR / filename
-
-    print(
-        f"Downloading:\n{url}"
-    )
+    print("Downloading ADHD-200 phenotypic dataset...")
 
     response = requests.get(
-        url,
-        stream=True
+        DATASET_URL,
+        timeout=60
+    )
+
+    print(
+        "HTTP status:",
+        response.status_code
     )
 
     response.raise_for_status()
 
-    with open(destination, "wb") as file:
 
-        for chunk in response.iter_content(
-            chunk_size=8192
-        ):
-            file.write(chunk)
+    with open(
+        OUTPUT_FILE,
+        "wb"
+    ) as file:
 
-    print(
-        f"Saved: {destination}"
-    )
-
-    return destination
+        file.write(
+            response.content
+        )
 
 
-def update_metadata(source_url, filename):
+    print("\nSaved:")
+    print(OUTPUT_FILE)
+
+
+def update_metadata():
 
     metadata = {
-        "dataset": "ADHD-200 Consortium Phenotypic Data",
-        "source": source_url,
-        "file": filename,
-        "download_date": datetime.now().isoformat(),
-        "status": "downloaded"
+
+        "dataset":
+        "ADHD-200 Consortium Phenotypic Data",
+
+        "source":
+        DATASET_URL,
+
+        "file":
+        str(OUTPUT_FILE),
+
+        "download_date":
+        datetime.now().isoformat(),
+
+        "status":
+        "downloaded"
     }
+
 
     with open(
         METADATA_FILE,
@@ -87,17 +101,11 @@ def update_metadata(source_url, filename):
 
 def main():
 
-    create_raw_directory()
+    create_directory()
 
-    print(
-        """
-Dataset downloader ready.
+    download_dataset()
 
-Waiting for verified official dataset URL.
-
-No download performed.
-        """
-    )
+    update_metadata()
 
 
 if __name__ == "__main__":

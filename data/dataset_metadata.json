@@ -1,8 +1,7 @@
 {
     "dataset": "ADHD-200 Consortium Phenotypic Data",
-    "version": "pending",
-    "source": "pending",
-    "download_date": "generated automatically",
-    "description": "Behavioral and phenotypic data for ADHD machine learning research.",
-    "status": "awaiting official source verification"
+    "source": "https://www.nitrc.org/frs/download.php/9024/adhd200_preprocessed_phenotypics.tsv",
+    "file": "/workspaces/ADHD-Behavioral-Prediction-AI/data/raw/adhd200_preprocessed_phenotypics.tsv",
+    "download_date": "2026-07-26T19:34:54.209285",
+    "status": "downloaded"
 }
