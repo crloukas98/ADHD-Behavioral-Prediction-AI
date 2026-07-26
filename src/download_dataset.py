@@ -2,15 +2,14 @@
 ADHD Dataset Download Utility
 
 Purpose:
-Download and organize raw research data.
+Download and verify the raw ADHD research dataset.
 
-Raw data is stored in:
+Raw data location:
 data/raw/
-
-Raw files should never be modified directly.
 """
 
 from pathlib import Path
+import requests
 import json
 from datetime import datetime
 
@@ -22,10 +21,7 @@ RAW_DATA_DIR = PROJECT_ROOT / "data" / "raw"
 METADATA_FILE = PROJECT_ROOT / "data" / "dataset_metadata.json"
 
 
-def create_directories():
-    """
-    Create required dataset directories.
-    """
+def create_raw_directory():
 
     RAW_DATA_DIR.mkdir(
         parents=True,
@@ -33,21 +29,47 @@ def create_directories():
     )
 
     print(
-        f"Raw data directory ready: {RAW_DATA_DIR}"
+        f"Raw directory ready: {RAW_DATA_DIR}"
     )
 
 
-def create_metadata():
+def download_file(url, filename):
+
+    destination = RAW_DATA_DIR / filename
+
+    print(
+        f"Downloading:\n{url}"
+    )
+
+    response = requests.get(
+        url,
+        stream=True
+    )
+
+    response.raise_for_status()
+
+    with open(destination, "wb") as file:
+
+        for chunk in response.iter_content(
+            chunk_size=8192
+        ):
+            file.write(chunk)
+
+    print(
+        f"Saved: {destination}"
+    )
+
+    return destination
+
+
+def update_metadata(source_url, filename):
 
     metadata = {
         "dataset": "ADHD-200 Consortium Phenotypic Data",
-        "version": "pending",
-        "source": "pending",
+        "source": source_url,
+        "file": filename,
         "download_date": datetime.now().isoformat(),
-        "description": (
-            "Behavioral and phenotypic data "
-            "for ADHD machine learning research."
-        )
+        "status": "downloaded"
     }
 
     with open(
@@ -62,28 +84,22 @@ def create_metadata():
             indent=4
         )
 
-    print(
-        f"Metadata created: {METADATA_FILE}"
-    )
-
 
 def main():
 
-    create_directories()
-
-    create_metadata()
+    create_raw_directory()
 
     print(
         """
-Dataset acquisition pipeline initialized.
+Dataset downloader ready.
 
-Next:
-1. Add official dataset source.
-2. Download raw files.
-3. Verify integrity.
+Waiting for verified official dataset URL.
+
+No download performed.
         """
     )
 
 
 if __name__ == "__main__":
+
     main()

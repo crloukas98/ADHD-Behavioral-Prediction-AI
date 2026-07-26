@@ -1,0 +1,14 @@
+{
+    "datasets": {
+        "adhd200_phenotypic": {
+            "name": "ADHD-200 Consortium Phenotypic Data",
+            "status": "pending_download",
+            "source": null,
+            "version": null,
+            "files": [
+                "phenotypic_data.csv"
+            ],
+            "description": "Clinical and behavioral variables from the ADHD-200 Consortium dataset."
+        }
+    }
+}

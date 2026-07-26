@@ -1,0 +1,22 @@
+{
+    "project": "ADHD Behavioral Prediction AI",
+    "dataset": {
+        "name": "ADHD-200 Consortium Phenotypic Data",
+        "version": "pending verification",
+        "source": "pending verification",
+        "license": "pending verification"
+    },
+    "files": {
+        "required": [
+            "phenotypic_data.csv"
+        ],
+        "destination": "data/raw/"
+    },
+    "validation": {
+        "expected_columns": [
+            "participant_id",
+            "diagnosis"
+        ],
+        "notes": "Column names will be updated after source inspection."
+    }
+}
