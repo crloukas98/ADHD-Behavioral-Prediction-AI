@@ -1,21 +1,35 @@
 """
-Dataset download utilities.
+Download ADHD research dataset.
 
-This script manages research dataset storage.
+Raw data is stored locally and excluded from GitHub.
 """
 
 from pathlib import Path
 
 
 PROJECT_ROOT = Path(__file__).resolve().parent.parent
-
 DATA_DIR = PROJECT_ROOT / "data" / "raw"
 
 
-def create_data_directory():
+def setup_data_directory():
     DATA_DIR.mkdir(parents=True, exist_ok=True)
-    print(f"Created {DATA_DIR}")
+    print(f"Data directory: {DATA_DIR}")
+
+
+def main():
+    setup_data_directory()
+
+    print(
+        """
+Dataset download step.
+
+Next:
+- identify official dataset source
+- download files
+- verify structure
+        """
+    )
 
 
 if __name__ == "__main__":
-    create_data_directory()
+    main()

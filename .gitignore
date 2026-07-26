@@ -216,3 +216,12 @@ __marimo__/
 
 # Streamlit
 .streamlit/secrets.toml
+# Research data
+data/raw/
+data/processed/
+
+# Models
+models/*.pkl
+
+# Notebook checkpoints
+.ipynb_checkpoints/
