@@ -1,22 +1,55 @@
 # ADHD Behavioral Prediction AI
 
-Machine Learning Research Project for ADHD Prediction Using Phenotypic and Neuroimaging Data
+## Machine Learning Research Project for ADHD Prediction Using Phenotypic and Neuroimaging Data
 
 ---
 
-## Abstract
+# Abstract
 
-This project develops a complete, reproducible, and explainable artificial intelligence pipeline for predicting ADHD-related patterns from clinical phenotypic data. Using the publicly available ADHD-200 Consortium dataset, participant demographic, cognitive, and symptom-related features were processed and evaluated through multiple machine learning approaches.
+This project develops a complete, reproducible, and explainable artificial intelligence pipeline for predicting ADHD-related patterns from clinical phenotypic data.
 
-Four classification algorithms were compared: Logistic Regression, Support Vector Machine, Random Forest, and XGBoost. The final models were evaluated using cross-validation, ROC-AUC, accuracy, precision, recall, and confusion matrices. XGBoost achieved the strongest performance, demonstrating excellent discrimination between ADHD and non-ADHD classes.
+Using the publicly available **ADHD-200 Consortium dataset**, participant demographic, cognitive, and symptom-related features were processed and evaluated through multiple machine learning approaches.
 
-Beyond prediction accuracy, this project investigates model transparency through Explainable AI techniques. SHAP analysis was applied to identify which features contributed most strongly to model decisions, revealing that ADHD symptom measurements and related clinical variables were the primary drivers of predictions.
+Four classification algorithms were compared:
 
-The result is a complete machine learning workflow that integrates data preprocessing, model development, performance evaluation, and explainability into a reproducible research framework. This project demonstrates how artificial intelligence can be applied responsibly to healthcare-related datasets by combining predictive capability with interpretability.
+- Logistic Regression
+- Support Vector Machine
+- Random Forest
+- XGBoost
 
-**Key achievement:** Built an end-to-end explainable AI system that predicts ADHD-related patterns from clinical data while identifying the features influencing its decisions.
+The final models were evaluated using:
 
-## Overview
+- Cross-validation
+- ROC-AUC
+- Accuracy
+- Precision
+- Recall
+- Confusion matrices
+
+XGBoost achieved the strongest performance, demonstrating excellent discrimination between ADHD and non-ADHD classes.
+
+Beyond prediction accuracy, this project investigates model transparency through **Explainable AI (XAI)** techniques.
+
+SHAP analysis was applied to identify which features contributed most strongly to model decisions, revealing that ADHD symptom measurements and related clinical variables were the primary drivers of predictions.
+
+The result is a complete machine learning workflow integrating:
+
+- Data preprocessing
+- Model development
+- Performance evaluation
+- Explainability analysis
+
+into a reproducible research framework.
+
+This project demonstrates how artificial intelligence can be applied responsibly to healthcare-related datasets by combining predictive capability with interpretability.
+
+**Key achievement:**
+
+Built an end-to-end explainable AI system that predicts ADHD-related patterns from clinical data while identifying the features influencing its decisions.
+
+---
+
+# Overview
 
 This project investigates whether artificial intelligence and machine learning can identify patterns associated with Attention-Deficit/Hyperactivity Disorder (ADHD) using publicly available research datasets.
 
@@ -24,11 +57,11 @@ The project is structured as a series of reproducible studies, beginning with ph
 
 The long-term goal is to explore how AI can assist understanding of ADHD through:
 
-- behavioral data analysis
-- machine learning
-- explainable AI
-- neuroimaging analysis
-- computational neuroscience
+- Behavioral data analysis
+- Machine learning
+- Explainable AI
+- Neuroimaging analysis
+- Computational neuroscience
 
 ---
 
@@ -46,35 +79,30 @@ The long-term goal is to explore how AI can assist understanding of ADHD through
 
 ## ADHD-200 Consortium Phenotypic Dataset
 
-Dataset characteristics:
+### Dataset Characteristics
 
+| Description | Value |
+|---|---:|
+| Original participants | 973 |
+| Processed binary classification dataset | 797 |
 
-Original participants:
-973
-
-Processed binary classification dataset:
-797
-
-
-Class distribution:
+### Class Distribution
 
 | Class | Participants |
 |---|---:|
 | No ADHD | 585 |
 | ADHD | 212 |
 
-Target:
-
+### Target Variable
 
 ADHD diagnosis
 
-
 Encoding:
 
-
+```text
 0 = No ADHD
 1 = ADHD
-
+```
 
 ---
 
@@ -82,29 +110,27 @@ Encoding:
 
 The dataset was processed using a reproducible machine learning pipeline.
 
-Steps:
-
-
-Raw dataset
-|
-↓
-Data cleaning
-|
-↓
-Missing value handling
-|
-↓
-Feature preprocessing
-|
-↓
-Model training
-|
-↓
+```text
+Raw Dataset
+     |
+     ↓
+Data Cleaning
+     |
+     ↓
+Missing Value Handling
+     |
+     ↓
+Feature Preprocessing
+     |
+     ↓
+Model Training
+     |
+     ↓
 Cross-validation
-|
-↓
-Performance evaluation
-
+     |
+     ↓
+Performance Evaluation
+```
 
 ---
 
@@ -113,7 +139,7 @@ Performance evaluation
 The following machine learning algorithms were compared:
 
 | Model | Purpose |
-|-|-|
+|---|---|
 | Logistic Regression | Linear baseline |
 | Support Vector Machine | Nonlinear classifier |
 | Random Forest | Ensemble tree model |
@@ -127,19 +153,19 @@ The following machine learning algorithms were compared:
 
 Features included:
 
-### Demographics
+## Demographics
 
 - Age
 - Gender
 - Handedness
 
-### Cognitive Measures
+## Cognitive Measures
 
 - Verbal IQ
 - Performance IQ
 - Full Scale IQ
 
-### ADHD Symptom Measures
+## ADHD Symptom Measures
 
 - ADHD Measure
 - ADHD Index
@@ -148,7 +174,7 @@ Features included:
 
 ---
 
-## Model Performance
+# Model Performance
 
 | Model | ROC-AUC |
 |---|---:|
@@ -163,28 +189,26 @@ Features included:
 
 ## XGBoost
 
-Cross-validation:
-
+## Cross-validation Performance
 
 Mean ROC-AUC:
-0.9698
 
+```text
+0.9698
+```
 
 Standard deviation:
 
-
+```text
 0.0120
+```
 
+## Held-out Test Performance
 
-Held-out test:
-
-
-ROC-AUC:
-0.9356
-
-Accuracy:
-0.925
-
+| Metric | Score |
+|---|---:|
+| ROC-AUC | 0.9356 |
+| Accuracy | 0.925 |
 
 ---
 
@@ -193,7 +217,7 @@ Accuracy:
 Most influential features:
 
 | Feature | Importance |
-|-|-:|
+|---|---:|
 | Hyper/Impulsive symptoms | 0.1937 |
 | ADHD Index | 0.1910 |
 | Inattentive symptoms | 0.1862 |
@@ -204,20 +228,24 @@ Most influential features:
 
 # Discovery Experiment
 
-## Question
+## Research Question
 
 > Can ADHD diagnosis be predicted without symptom information?
 
-To investigate whether the model was learning general demographic/cognitive patterns, symptom variables were removed.
+To investigate whether the model was learning general demographic and cognitive patterns, symptom variables were removed.
 
-Removed:
+---
+
+## Removed Features
 
 - ADHD Measure
 - ADHD Index
 - Inattentive symptoms
 - Hyper/Impulsive symptoms
 
-Remaining:
+---
+
+## Remaining Features
 
 - Age
 - Gender
@@ -230,21 +258,16 @@ Remaining:
 
 # Discovery Model Results
 
-Algorithm:
-
+## Algorithm
 
 XGBoost
 
+## Performance
 
-Performance:
-
-
-Mean ROC-AUC:
-0.7248
-
-Test ROC-AUC:
-0.7295
-
+| Metric | Score |
+|---|---:|
+| Mean ROC-AUC | 0.7248 |
+| Test ROC-AUC | 0.7295 |
 
 ---
 
@@ -258,34 +281,34 @@ However, demographic and cognitive variables alone provide limited predictive po
 
 This suggests:
 
-- symptom measurements contain the strongest predictive signal
-- demographic variables alone are insufficient
-- machine learning is capturing phenotype patterns rather than discovering an independent ADHD biomarker
+- Symptom measurements contain the strongest predictive signal
+- Demographic variables alone are insufficient
+- Machine learning is capturing phenotype patterns rather than discovering an independent ADHD biomarker
 
 ---
 
 # Project Structure
 
-
+```text
 ADHD-Behavioral-Prediction-AI/
 
 ├── data/
-│ ├── raw/
-│ └── processed/
+│   ├── raw/
+│   └── processed/
 │
 ├── models/
 │
 ├── reports/
 │
 ├── src/
-│ ├── data_processing/
-│ ├── model_training/
-│ └── evaluation/
+│   ├── data_processing/
+│   ├── model_training/
+│   └── evaluation/
 │
 ├── docs/
 │
 └── README.md
-
+```
 
 ---
 
@@ -305,7 +328,7 @@ ADHD-Behavioral-Prediction-AI/
 ## Explainable AI
 
 - Feature importance analysis
-- Future SHAP analysis
+- SHAP analysis
 
 ## Development Environment
 
@@ -316,34 +339,51 @@ ADHD-Behavioral-Prediction-AI/
 
 # Reproducibility
 
-Install dependencies:
+## Install Dependencies
 
 ```bash
 pip install -r requirements.txt
+```
 
-Run preprocessing:
+## Run Preprocessing
 
+```bash
 python src/process_dataset.py
+```
 
-Train models:
+## Train Models
 
+```bash
 python src/train_baseline_model.py
+
 python src/model_benchmark.py
+
 python src/xgboost_discovery_model.py
-Limitations
-Dataset
-Multi-site dataset
-Missing values
-Potential site-specific effects
-Machine Learning
-Models learn statistical associations
-Results may not generalize to unseen populations
-High performance may partially reflect similarity between symptoms and diagnostic criteria
-Clinical
+```
+
+---
+
+# Limitations
+
+## Dataset
+
+- Multi-site dataset
+- Missing values
+- Potential site-specific effects
+
+## Machine Learning
+
+- Models learn statistical associations
+- Results may not generalize to unseen populations
+- High performance may partially reflect similarity between symptoms and diagnostic criteria
+
+## Clinical
 
 This project is a research investigation.
 
-The models are not diagnostic tools and cannot replace clinical evaluation.
+The models are **not diagnostic tools** and cannot replace professional clinical evaluation.
+
+---
 
 # Study 2: Explainable ADHD Prediction
 
@@ -353,15 +393,15 @@ The models are not diagnostic tools and cannot replace clinical evaluation.
 
 ---
 
-## Motivation
+# Motivation
 
 Although Study 1 demonstrated strong predictive performance, machine learning models can behave as black boxes.
 
-Study 2 introduces explainable artificial intelligence (XAI) methods to investigate:
+Study 2 introduces **Explainable Artificial Intelligence (XAI)** methods to investigate:
 
-- which features drive predictions
-- how strongly each feature contributes
-- whether model behavior aligns with known ADHD clinical characteristics
+- Which features drive predictions
+- How strongly each feature contributes
+- Whether model behavior aligns with known ADHD clinical characteristics
 
 ---
 
@@ -369,45 +409,42 @@ Study 2 introduces explainable artificial intelligence (XAI) methods to investig
 
 The final XGBoost ADHD prediction model from Study 1 was analyzed using:
 
-## SHAP (SHapley Additive exPlanations)
+## SHAP
+
+### SHapley Additive exPlanations
 
 SHAP estimates how much each feature contributes to an individual prediction.
 
 Pipeline:
 
+```text
+Final XGBoost Model
 
-Final XGBoost model
+        |
+        ↓
 
-    |
+SHAP Value Calculation
 
-    ↓
+        |
+        ↓
 
-SHAP value calculation
+Global Feature Importance
 
-    |
+        |
+        ↓
 
-    ↓
-
-Global feature importance
-
-    |
-
-    ↓
-
-Prediction interpretation
-
+Prediction Interpretation
+```
 
 ---
 
 # SHAP Feature Importance
 
-The most influential features were:
-
 | Rank | Feature | Mean Absolute SHAP |
 |---|---|---:|
 | 1 | ADHD Index | 1.6816 |
 | 2 | Inattentive symptoms | 0.9543 |
-| 3 | Full4 IQ | 0.7540 |
+| 3 | Full Scale IQ | 0.7540 |
 | 4 | Hyper/Impulsive symptoms | 0.6431 |
 | 5 | Age | 0.4999 |
 | 6 | Gender | 0.4249 |
@@ -441,9 +478,9 @@ Instead, it learns statistical patterns within clinically measured characteristi
 
 This demonstrates that:
 
-- machine learning can reproduce ADHD-related behavioral patterns
-- model decisions can be interpreted using explainable AI methods
-- explainability is essential when applying AI to healthcare research
+- Machine learning can reproduce ADHD-related behavioral patterns
+- Model decisions can be interpreted using explainable AI methods
+- Explainability is essential when applying AI to healthcare research
 
 ---
 
@@ -451,14 +488,15 @@ This demonstrates that:
 
 Generated:
 
-
+```text
 reports/
 
 ├── shap_feature_importance.csv
 
 └── figures/
 
-└── shap_summary.png
+    └── shap_summary.png
+```
 
 ---
 
@@ -470,4 +508,4 @@ Completed:
 ✅ SHAP integration  
 ✅ Global feature importance analysis  
 ✅ Explainability visualization  
-✅ Interpretation of model behavior  
+✅ Interpretation of model behavior
